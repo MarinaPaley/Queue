@@ -21,5 +21,18 @@ namespace QueueTests
 			//Assert
 			Assert::AreEqual(size, 5);
 		}
+
+		TEST_METHOD(ToString__ValidData_Success)
+		{
+			// Arrange
+			Queue q{ 1, 2, 3, 4, 5 };
+			const std::string expected = "{ 1, 2, 3, 4, 5 }";
+
+			// Act
+			auto actual = q.ToString();
+
+			// Assert
+			Assert::AreEqual(expected, actual);
+		}
 	};
 }

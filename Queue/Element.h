@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 /**
 * \brief Ёлемент очереди.
 */
@@ -26,4 +27,6 @@ public:
    * \brief —сылка на предыдущий элемент.
    */
 	Element* next;
+
+	std::string ToString() const noexcept;
 };

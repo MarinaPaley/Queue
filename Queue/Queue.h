@@ -1,6 +1,8 @@
 #pragma once
 #include "Element.h"
 #include <initializer_list>
+#include <string>
+
 /**
 * \brief Очередь.
 */
@@ -62,4 +64,6 @@ public:
 	void Clear() noexcept;
 
 	size_t GetSize() const noexcept;
+
+	std::string ToString() const noexcept;
 };

@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Queue.h"
 
 Queue::Queue() noexcept
@@ -24,13 +25,12 @@ bool Queue::Add(Element* element) noexcept
 {
 	if (this->IsEmpty())
 	{
-		this->head = element;
-		this->head->next = this->tail;
+		this->tail = this->head = element;
 		this->size++;
 		return true;
 	}
 
-	this->tail = element;
+	this->tail->next = element;
 	this->tail = this->tail->next;
 	this->size++;
 	return true;
@@ -60,4 +60,17 @@ void Queue::Clear() noexcept
 size_t Queue::GetSize() const noexcept
 {
 	return this->size;
+}
+
+std::string Queue::ToString() const noexcept
+{
+	std::stringstream buffer;
+	auto temp = this->head;
+	while (temp != nullptr)
+	{
+		buffer << temp->ToString();
+		temp = temp->next;
+	}
+
+	return buffer.str();
 }
