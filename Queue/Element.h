@@ -3,15 +3,13 @@
 /**
 * \brief Элемент очереди.
 */
-class Element
+struct Element
 {
-private:
 	/**
 	* \brief Значение элемента.
 	*/
 	int value;
 
-public:
 	/**
 	* \brief Инициализирует объект класса Элемент.
 	* \param value Значение элемента.
@@ -29,4 +27,7 @@ public:
 	Element* next;
 
 	std::string ToString() const noexcept;
+
+	bool operator ==(const Element& other);
+	bool operator !=(const Element& other);
 };

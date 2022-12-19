@@ -24,18 +24,28 @@ private:
 	*/
 	size_t size;
 
-   /**
-   * \brief Метод добавления элемента в очередь.
-   * \return true, если добавили.
-   */
-	bool Add(Element* element) noexcept;
-
 	/**
 	* \brief Удаление из головы очереди.
 	* \return true, если удалили.
 	*/
 	Element* Remove() noexcept;
+
 public:
+	class Iterator
+	{
+	public:
+		explicit Iterator(Element*);
+		~Iterator() = default;
+
+		Iterator operator++();
+		int operator*() const;
+		bool operator==(Iterator& const other);
+		bool operator!=(Iterator& const other);
+
+	private:
+		Element* current;
+	};
+
 	/**
 	* \brief Инициализирует объект класса Очередь.
 	*/
@@ -53,6 +63,12 @@ public:
 	~Queue();
 
 	/**
+	* \brief Метод добавления элемента в очередь.
+	* \return true, если добавили.
+	*/
+	bool Push(Element* element) noexcept;
+
+	/**
 	* \brief Определяет, пустая ли очередь.
 	* \return true, если пустая.
 	*/
@@ -66,4 +82,9 @@ public:
 	size_t GetSize() const noexcept;
 
 	std::string ToString() const noexcept;
+
+	Iterator cbegin() const;
+
+	Iterator cend() const;
 };
+

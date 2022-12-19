@@ -12,7 +12,7 @@ Queue::Queue(const std::initializer_list<int> elements) noexcept
 	for (auto it = elements.begin(); it != elements.end(); it++)
 	{
 		auto element = new Element(*it);
-		this->Add(element);
+		this->Push(element);
 	}
 }
 
@@ -21,7 +21,7 @@ Queue::~Queue()
 	this->Clear();
 }
 
-bool Queue::Add(Element* element) noexcept
+bool Queue::Push(Element* element) noexcept
 {
 	if (this->IsEmpty())
 	{
@@ -76,3 +76,41 @@ std::string Queue::ToString() const noexcept
 
 	return buffer.str();
 }
+
+Queue::Iterator Queue::cbegin() const
+{
+	return Iterator(this->head);
+}
+
+Queue::Iterator Queue::cend() const
+{
+	return Iterator(this->tail->next);
+}
+
+
+Queue::Iterator::Iterator(Element* element) : current(element)
+{
+}
+
+
+Queue::Iterator Queue::Iterator::operator++()
+{
+	current = current->next;
+	return Iterator(this->current);
+}
+
+int Queue::Iterator::operator*() const
+{
+	return this->current->value;
+}
+
+bool Queue::Iterator::operator==(Iterator& const other)
+{
+	return this->current == other.current;
+}
+
+bool Queue::Iterator::operator!=(Iterator& const other)
+{
+	return this->current != other.current;
+}
+

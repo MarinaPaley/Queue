@@ -17,3 +17,13 @@ std::string Element::ToString() const noexcept
 	buffer << this->value;
 	return buffer.str();
 }
+
+bool Element::operator==(const Element& other)
+{
+	return this->value == other.value;
+}
+
+bool Element::operator!=(const Element& other)
+{
+	return this->value == other.value;
+}
