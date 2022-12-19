@@ -65,12 +65,14 @@ size_t Queue::GetSize() const noexcept
 std::string Queue::ToString() const noexcept
 {
 	std::stringstream buffer;
+	buffer << "{ ";
 	auto temp = this->head;
-	while (temp != nullptr)
+	while (temp->next != nullptr)
 	{
-		buffer << temp->ToString();
+		buffer << temp->ToString() << ", ";
 		temp = temp->next;
 	}
+	buffer << temp->ToString() << " }";
 
 	return buffer.str();
 }
